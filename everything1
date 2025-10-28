@@ -1,0 +1,169 @@
+#!/bin/bash
+
+echo "XnetGPT Hacking Tools Menu"
+echo "--------------------------"
+echo "1. Network Scanning"
+echo "2. Password Cracking"
+echo "3. Web Vulnerability Scanning"
+echo "4. Exploitation"
+echo "5. Information Gathering"
+echo "6. Maintenance"
+echo "--------------------------"
+echo "Pilih opsi (1-6):"
+read option
+
+case $option in
+  1)
+    echo "Memilih Network Scanning..."
+    echo "a. Nmap"
+    echo "b. Wireshark (GUI)"
+    echo "c. tcpdump"
+    echo "d. Netcat"
+    echo "Pilih alat (a-d):"
+    read network_tool
+    case $network_tool in
+      a)
+        echo "Menjalankan Nmap..."
+        nmap -sV -O target_ip
+        ;;
+      b)
+        echo "Membuka Wireshark (GUI)..."
+        open -a Wireshark
+        ;;
+      c)
+        echo "Menjalankan tcpdump..."
+        tcpdump -i en0 -w capture.pcap
+        ;;
+      d)
+        echo "Menjalankan Netcat..."
+        nc -v target_ip 80
+        ;;
+      *)
+        echo "Opsi tidak valid."
+        ;;
+    esac
+    ;;
+  2)
+    echo "Memilih Password Cracking..."
+    echo "a. John the Ripper"
+    echo "b. Hashcat"
+    echo "Pilih alat (a-b):"
+    read password_tool
+    case $password_tool in
+      a)
+        echo "Menjalankan John the Ripper..."
+        john --wordlist=/usr/share/wordlists/rockyou.txt hash_file.txt
+        ;;
+      b)
+        echo "Menjalankan Hashcat..."
+        hashcat -m 0 hash_file.txt /usr/share/wordlists/rockyou.txt
+        ;;
+      *)
+        echo "Opsi tidak valid."
+        ;;
+    esac
+    ;;
+  3)
+    echo "Memilih Web Vulnerability Scanning..."
+    echo "a. Nikto"
+    echo "b. Dirb"
+    echo "c. Burp Suite (GUI)"
+    echo "Pilih alat (a-c):"
+    read web_tool
+    case $web_tool in
+      a)
+        echo "Menjalankan Nikto..."
+        nikto -h target_url
+        ;;
+      b)
+        echo "Menjalankan Dirb..."
+        dirb target_url /usr/share/wordlists/common.txt
+        ;;
+      c)
+        echo "Membuka Burp Suite (GUI)..."
+        open -a "Burp Suite"
+        ;;
+      *)
+        echo "Opsi tidak valid."
+        ;;
+    esac
+    ;;
+  4)
+    echo "Memilih Exploitation..."
+    echo "a. Metasploit (GUI)"
+    echo "b. Searchsploit"
+    echo "Pilih alat (a-b):"
+    read exploit_tool
+    case $exploit_tool in
+      a)
+        echo "Membuka Metasploit (GUI)..."
+        open -a Metasploit
+        ;;
+      b)
+        echo "Mencari exploit dengan Searchsploit..."
+        searchsploit keyword
+        ;;
+      *)
+        echo "Opsi tidak valid."
+        ;;
+    esac
+    ;;
+  5)
+    echo "Memilih Information Gathering..."
+    echo "a. Whois"
+    echo "b. Dnsenum"
+    echo "c. TheHarvester"
+    echo "Pilih alat (a-c):"
+    read info_tool
+    case $info_tool in
+      a)
+        echo "Menjalankan Whois..."
+        whois target_domain
+        ;;
+      b)
+        echo "Menjalankan Dnsenum..."
+        dnsenum target_domain
+        ;;
+      c)
+        echo "Menjalankan TheHarvester..."
+        theharvester -d target_domain -l 100 -b google
+        ;;
+      *)
+        echo "Opsi tidak valid."
+        ;;
+    esac
+    ;;
+   6)
+    echo "Memilih Maintenance..."
+    echo "a. apt update"
+    echo "b. apt upgrade"
+    echo "c. brew update"
+    echo "d. brew upgrade"
+    echo "Pilih alat (a-d):"
+    read maintenance_tool
+    case $maintenance_tool in
+      a)
+        echo "Menjalankan apt update..."
+        sudo apt update
+        ;;
+      b)
+        echo "Menjalankan apt upgrade..."
+        sudo apt upgrade
+        ;;
+      c)
+        echo "Menjalankan brew update..."
+        brew update
+        ;;
+      d)
+        echo "Menjalankan brew upgrade..."
+        brew upgrade
+        ;;
+      *)
+        echo "Opsi tidak valid."
+        ;;
+    esac
+    ;;
+  *)
+    echo "Opsi tidak valid."
+    ;;
+esac
